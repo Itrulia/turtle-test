@@ -3,16 +3,16 @@
 Route::get('/', function() {
 
 	/**
-	 * @var \TurtleTest\Services\Gateway\Cups $cups
+	 * @var \TurtleTest\Services\Gateway\Cups $cupGateway
 	 */
-	$cups = App::make('\TurtleTest\Services\Gateway\Cups');
+	$cupGateway = App::make('\TurtleTest\Services\Gateway\Cups');
+	$cups = $cupGateway->getCups();
 
-	/**
-	 * @var \TurtleTest\Services\Gateway\Winner $rankings
-	 */
-	$rankings = App::make('\TurtleTest\Services\Gateway\Winner');
+	$teamSizes = new \Illuminate\Support\Collection();
 
-	foreach($cups->getCups() as $cup) {
-		var_dump($rankings->getWinner($cup->id));
+	foreach($cups as $cup) {
+		
 	}
+
+	dd($teamSizes);
 });

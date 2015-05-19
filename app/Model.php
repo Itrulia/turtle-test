@@ -74,13 +74,12 @@ abstract class Model
 
 	/**
 	 * @param $aKey
-	 * @param $aValue
 	 *
 	 * @return mixed
 	 */
-	protected function mutateAttribute($aKey, $aValue)
+	protected function getAttribute($aKey)
 	{
-		return $this->{'get' . studly_case($aKey) . 'Attribute'}($aValue);
+		return $this->{'get' . studly_case($aKey) . 'Attribute'}();
 	}
 
 	/**
@@ -116,14 +115,13 @@ abstract class Model
 	 */
 	protected function get($aKey)
 	{
-		if (array_key_exists($aKey, $this->data)) {
-			if ($this->hasGetter($aKey)) {
-				return $this->mutateAttribute($aKey, $this->data[$aKey]);
-			}
+		if ($this->hasGetter($aKey)) {
+			return $this->getAttribute($aKey);
+		}
 
+		if (array_key_exists($aKey, $this->data)) {
 			return $this->data[$aKey];
 		} else {
-
 			return null;
 		}
 	}

@@ -2,7 +2,7 @@
 
 use GuzzleHttp\Client;
 use TurtleTest\Ranking;
-use TurtleTest\Services\Factory\Winner as WinnerFactory;
+use TurtleTest\Services\Factory\Team as TeamFactory;
 
 class Winner extends Gateway {
 
@@ -18,10 +18,10 @@ class Winner extends Gateway {
 
 	/**
 	 * @param \GuzzleHttp\Client $aClient
-	 * @param \TurtleTest\Services\Factory\Winner $aFactory
+	 * @param \TurtleTest\Services\Factory\Team $aFactory
 	 * @param \TurtleTest\Services\Gateway\Rankings $aRankings
 	 */
-	public function __construct(Client $aClient, WinnerFactory $aFactory, Rankings $aRankings)
+	public function __construct(Client $aClient, TeamFactory $aFactory, Rankings $aRankings)
 	{
 		parent::__construct($aClient);
 		$this->factory = $aFactory;

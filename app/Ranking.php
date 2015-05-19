@@ -2,6 +2,10 @@
 
 use TurtleTest\Services\Factory\Team as TeamFactory;
 
+/**
+ * @property int $position
+ * @property Team $team
+ */
 class Ranking extends Model {
 
 	/**
