@@ -1,0 +1,8 @@
+# Folders
+/.vagrant
+/.idea
+/vendor
+
+# Files
+.env
+_ide_helper.php
