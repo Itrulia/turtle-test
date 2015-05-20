@@ -1,8 +1,10 @@
 <?php namespace TurtleTest;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use LogicException;
 
-abstract class Model
+abstract class Model implements Arrayable, Jsonable
 {
 	/**
 	 * @var array
@@ -124,5 +126,36 @@ abstract class Model
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Get the instance as an array.
+	 *
+	 * @return array
+	 */
+	public function toArray()
+	{
+		$array = [];
+
+		foreach($this->data as $key => $data) {
+			if ($data instanceof Arrayable) {
+				$data = $data->toArray();
+			}
+
+			$array[$key] = $data;
+		}
+
+		return $array;
+	}
+
+	/**
+	 * Convert the object to its JSON representation.
+	 *
+	 * @param  int $options
+	 * @return string
+	 */
+	public function toJson($options = 0)
+	{
+		return json_encode($this->toArray(), $options);
 	}
 }

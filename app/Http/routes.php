@@ -10,6 +10,8 @@ Route::get('/', function() {
 
 	$teamSizes = new \Illuminate\Support\Collection();
 
+	$winners = [];
+
 	foreach($cups as $cup) {
 		/**
 		 * @var \TurtleTest\Cup $cup
@@ -25,6 +27,12 @@ Route::get('/', function() {
 
 			$teamSizes->push($bracket);
 		}
+
+		if (is_null($cup->winner)) {
+			continue;
+		}
+
+		$winners[] = $cup->winner->id;
 
 		/**
 		 * @var \TurtleTest\Winner $winner
@@ -48,5 +56,6 @@ Route::get('/', function() {
 		return $item->teamSize;
 	});
 
-	dd($teamSizes);
+
+	return $teamSizes->toArray();
 });
