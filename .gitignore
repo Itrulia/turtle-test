@@ -6,3 +6,4 @@
 # Files
 .env
 _ide_helper.php
+phpunit.phar

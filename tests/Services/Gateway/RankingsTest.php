@@ -1,33 +1,35 @@
-<?php namespace Tests\Services\Avatar;
+<?php namespace Tests\Service\Gateway;
 
-use Battleborn\Services\Avatar\Gravatar;
 use TestCase;
 use Mockery;
 use Mockery\MockInterface;
+use TurtleTest\Services\Gateway\Rankings;
 
-class GravatarTest extends TestCase {
+class RankingsTest extends TestCase {
 
-	/**
-	 * @var Gravatar
-	 */
-	protected $gravatar;
-
-	public function __construct($name = null, array $data = array(), $dataName = '') {
+	public function __construct($name = null, array $data = [], $dataName = '') {
 		parent::__construct($name, $data, $dataName);
-
-		$this->gravatar = new Gravatar();
 	}
 
 
-	public function testGetAvatar()
+	public function testGetRankings()
 	{
-		$user = Mockery::mock('Battleborn\User', function(MockInterface $mock) {
-			$mock->makePartial();
-			$mock->email = 'info@karl-merkli.ch';
+		$response = Mockery::mock('GuzzleHttp\Client', function(MockInterface $mock) {
+			$mock->shouldReceive('json')->times(1)->withNoArgs()->andReturn(['ranking' => ['JSON']]);
 		});
 
-		$result = $this->gravatar->getAvatar($user);
-		$expected = 'http://www.gravatar.com/avatar/d9f7d064e522b26a3821a504876f451a';
+		$client = Mockery::mock('GuzzleHttp\Client', function(MockInterface $mock) use($response) {
+			$mock->shouldReceive('get')->times(1)->with('http://play.eslgaming.com/api/leagues/1234/ranking')->andReturn($response);
+		});
+
+		$factory = Mockery::mock('TurtleTest\Services\Factory\Ranking', function(MockInterface $mock) {
+			$mock->shouldReceive('createMany')->times(1)->with(['JSON'])->andReturn('RANKINGS');
+		});
+
+		$app = new Rankings($client, $factory);
+
+		$result = $app->getRankings(1234);
+		$expected = 'RANKINGS';
 
 		$this->assertEquals($expected, $result);
 	}
