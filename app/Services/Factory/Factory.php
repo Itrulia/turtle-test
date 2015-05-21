@@ -2,7 +2,8 @@
 
 use Illuminate\Foundation\Application;
 
-abstract class Factory {
+abstract class Factory implements FactoryInterface
+{
 	/**
 	 * @var \TurtleTest\Model
 	 */
@@ -21,10 +22,6 @@ abstract class Factory {
 		$this->app = $aApp;
 	}
 
-	/**
-	 * @param array $aData
-	 * @return \TurtleTest\Model
-	 */
 	public function create(array $aData) {
 		$model = $this->app->make($this->model);
 
@@ -35,10 +32,6 @@ abstract class Factory {
 		return $model;
 	}
 
-	/**
-	 * @param array $aData
-	 * @return array
-	 */
 	public function createMany(array $aData) {
 		$models = [];
 

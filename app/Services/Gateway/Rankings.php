@@ -3,7 +3,8 @@
 use GuzzleHttp\Client;
 use TurtleTest\Services\Factory\Ranking as RankingFactory;
 
-class Rankings extends Gateway {
+class Rankings extends Gateway implements RankingsInterface
+{
 
 	/**
 	 * @var \TurtleTest\Services\Factory\Ranking
@@ -20,10 +21,6 @@ class Rankings extends Gateway {
 		$this->factory = $aFactory;
 	}
 
-	/**
-	 * @param $aCupId
-	 * @return array
-	 */
 	public function getRankings($aCupId) {
 		$response = $this->client->get('http://play.eslgaming.com/api/leagues/' . $aCupId . '/ranking');
 

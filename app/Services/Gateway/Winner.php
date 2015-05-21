@@ -4,7 +4,8 @@ use GuzzleHttp\Client;
 use TurtleTest\Ranking;
 use TurtleTest\Services\Factory\Team as TeamFactory;
 
-class Winner extends Gateway {
+class Winner extends Gateway implements WinnerInterface
+{
 
 	/**
 	 * @var \TurtleTest\Services\Factory\Winner
@@ -28,10 +29,6 @@ class Winner extends Gateway {
 		$this->rankings = $aRankings;
 	}
 
-	/**
-	 * @param $aCupId
-	 * @return \TurtleTest\Model|null
-	 */
 	public function getWinner($aCupId) {
 		$rankings = $this->rankings->getRankings($aCupId);
 
