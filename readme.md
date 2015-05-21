@@ -24,3 +24,45 @@ If PHP/Apache is installed
 3. `cd` in to it
 4. `composer install` the dependencies.
 5. visit the virtualhost + `turtle-test/public`
+
+## Why I used so many interfaces
+
+> You'll never know when you need another implementation 
+
+This is something I always keep in mind. Maybe I need to access the API from a SOAP service. This is why I stick to the [SOLID](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29) principles. 
+
+Also, when you use Laravel you can easily switch which implementation the IoC container will resolve.
+
+
+## What the `Gateways` do
+
+## What the `Factories` do
+
+## What the `Models` do
+
+Well the models are holding data. But they have some magic behind them.
+
+On a model you can always call`$model->getId();` or `$model->setId(1);`; Or you can access them directly via `$model->id` or `$model->id = 1` even when the model has no property called `id`. This is because of the way I use [magic methods](http://php.net/manual/en/language.oop5.magic.php).
+
+But what if you want to create a setter? No problem.
+
+Inside the class, just create a method with the following syntax:
+
+````php
+protected function setIdAttribute($aAttribute) {
+  // change $aAttribute here
+  $this->data['id'] = $aAttribute;
+}
+````
+
+The same goes for a getter:
+
+````php
+protected function getIdAttribute() {
+   $data = $this->data['id'];
+   // do your stuff here
+   return $data;
+}
+````
+
+Those get called behind the curtains when you call the described methods above.
