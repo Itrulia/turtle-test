@@ -79,4 +79,6 @@ Those get called behind the curtains when you call the described methods above.
 
 ## Tests
 
-I run the tests on every `git push` with Travis. You can see the results [here](https://travis-ci.org/Itrulia/turtle-test) if you want to run them yourself, just `cd` in to the repository and call `phpunit`.
+I run the tests on every `git push` with Travis. You can see the results [here](https://travis-ci.org/Itrulia/turtle-test).
+
+If you want to run them yourself, just `cd` in to the repository and call `phpunit`.
