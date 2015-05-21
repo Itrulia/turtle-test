@@ -1,61 +1,87 @@
 <?php namespace TurtleTest\Http\Controllers;
 
+use Illuminate\Support\Collection;
+use TurtleTest\Bracket;
+use TurtleTest\Cup;
 use TurtleTest\Services\Gateway\CupsInterface;
+use TurtleTest\Team;
+use TurtleTest\Winner;
 
-class IndexController extends Controller {
+class IndexController extends Controller
+{
+
+	/**
+	 * @param \Illuminate\Support\Collection $aBrackets
+	 * @param \TurtleTest\Cup $aCup
+	 * @return \TurtleTest\Bracket
+	 */
+	protected function addBracket(Collection $aBrackets, Cup $aCup)
+	{
+		$bracket = $aBrackets->filter(function (\TurtleTest\Bracket $item) use ($aCup) {
+			return $item->teamSize == $aCup->teamSize;
+		})->first();
+
+		if (empty($bracket)) {
+			$bracket = new \TurtleTest\Bracket();
+			$bracket->teamSize = $aCup->teamSize;
+
+			$aBrackets->push($bracket);
+		}
+
+		return $bracket;
+	}
+
+	/**
+	 * @param \TurtleTest\Bracket $aBracket
+	 * @param \TurtleTest\Team $aWinner
+	 * @return \TurtleTest\Winner
+	 */
+	protected function addWinner(Bracket $aBracket, Team $aWinner)
+	{
+		$winner = $aBracket->winners->filter(function (\TurtleTest\Winner $item) use ($aWinner) {
+			return $item->id === $aWinner->id;
+		})->first();
+
+		if (empty($winner)) {
+			$winner = new Winner();
+			$winner->id = $aWinner->id;
+			$winner->wins = 0;
+
+			$aBracket->winners->push($winner);
+		}
+
+		return $winner;
+	}
 
 	/**
 	 * @param \TurtleTest\Services\Gateway\CupsInterface $aCupGateway
 	 * @return array
 	 */
-	public function index(CupsInterface $aCupGateway) {
+	public function index(CupsInterface $aCupGateway)
+	{
 		$cups = $aCupGateway->getCups();
+		$brackets = new Collection();
 
-		$teamSizes = new \Illuminate\Support\Collection();
-
-		foreach($cups as $cup) {
+		foreach ($cups as $cup) {
 			/**
 			 * @var \TurtleTest\Cup $cup
-			 * @var \TurtleTest\Bracket $bracket
 			 */
-			$bracket = $teamSizes->filter(function(\TurtleTest\Bracket $item) use ($cup) {
-				return $item->teamSize == $cup->teamSize;
-			})->first();
-
-			if (empty($bracket)) {
-				$bracket = new \TurtleTest\Bracket();
-				$bracket->teamSize = $cup->teamSize;
-
-				$teamSizes->push($bracket);
-			}
+			$bracket = $this->addBracket($brackets, $cup);
 
 			if (is_null($cup->winner)) {
 				continue;
 			}
 
-			/**
-			 * @var \TurtleTest\Winner $winner
-			 */
-			$winner = $bracket->winners->filter(function(\TurtleTest\Winner $item) use ($cup) {
-				return $item->id === $cup->winner->id;
-			})->first();
-
-			if (empty($winner)) {
-				$winner = new \TurtleTest\Winner();
-				$winner->id = $cup->winner->id;
-				$winner->wins = 0;
-
-				$bracket->winners->push($winner);
-			}
+			$winner = $this->addWinner($bracket, $cup->winner);
 
 			$winner->wins++;
 		}
 
-		$teamSizes->sortBy(function(\TurtleTest\Bracket $item) {
+		$brackets->sortBy(function (\TurtleTest\Bracket $item) {
 			return $item->teamSize;
 		});
 
 
-		return $teamSizes->toArray();
+		return $brackets->toArray();
 	}
 }
