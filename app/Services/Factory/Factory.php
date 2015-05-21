@@ -5,7 +5,7 @@ use Illuminate\Foundation\Application;
 abstract class Factory implements FactoryInterface
 {
 	/**
-	 * @var \TurtleTest\Model|String
+	 * @var String
 	 */
 	protected $model;
 
