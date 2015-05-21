@@ -8,7 +8,7 @@ class Winner extends Gateway implements WinnerInterface
 {
 
 	/**
-	 * @var \TurtleTest\Services\Factory\WinnerInterface
+	 * @var \TurtleTest\Services\Factory\TeamInterface
 	 */
 	protected $factory;
 
