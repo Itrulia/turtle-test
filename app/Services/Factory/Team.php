@@ -1,6 +1,6 @@
 <?php namespace TurtleTest\Services\Factory;
 
-class Team extends Factory {
+class Team extends Factory implements TeamInterface {
 	/**
 	 * @var \TurtleTest\Model
 	 */

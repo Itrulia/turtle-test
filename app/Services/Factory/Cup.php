@@ -1,6 +1,6 @@
 <?php namespace TurtleTest\Services\Factory;
 
-class Cup extends Factory {
+class Cup extends Factory implements CupInterface {
 	/**
 	 * @var \TurtleTest\Model
 	 */

@@ -29,6 +29,10 @@ class Winner extends Gateway implements WinnerInterface
 		$this->rankings = $aRankings;
 	}
 
+	/**
+	 * @param $aCupId
+	 * @return \TurtleTest\Winner
+	 */
 	public function getWinner($aCupId) {
 		$rankings = $this->rankings->getRankings($aCupId);
 
