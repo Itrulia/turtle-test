@@ -44,7 +44,7 @@ The factories creates a model and populate the the properties.
 
 ## What the `Fetcher` does
 
-The lonely `FetchBrackets` class creates the different, brackets, populate them with the cups injected and removes empty cups.
+The lonely `FetchBrackets` class creates the brackets and populates them. This is basically the business logic of the application.
 
 If you want to add features to the application, you most likely will do it here. 
 
