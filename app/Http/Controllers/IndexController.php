@@ -77,11 +77,17 @@ class IndexController extends Controller
 			$winner->wins++;
 		}
 
-		$brackets->sortBy(function (\TurtleTest\Bracket $item) {
+		// Sort out brackets without a winner
+		$brackets = $brackets->filter(function (Bracket $item) {
+			return !$item->winners->isEmpty();
+		});
+
+		// Sort brackets teamsize by ASC
+		$brackets = $brackets->sortBy(function (Bracket $item) {
 			return $item->teamSize;
 		});
 
 
-		return $brackets->toArray();
+		return $brackets;
 	}
 }
