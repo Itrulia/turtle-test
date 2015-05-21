@@ -11,7 +11,6 @@ class CupsTest extends TestCase {
 		parent::__construct($name, $data, $dataName);
 	}
 
-
 	public function testGetCups()
 	{
 		$response = Mockery::mock('GuzzleHttp\Client', function(MockInterface $mock) {

@@ -7,6 +7,9 @@ use TurtleTest\Services\Factory\Cup;
 
 class CupTest extends TestCase {
 
+	/**
+	 * @var \TurtleTest\Services\Factory\Cup
+	 */
 	protected $factory;
 
 	public function __construct($name = null, array $data = [], $dataName = '') {

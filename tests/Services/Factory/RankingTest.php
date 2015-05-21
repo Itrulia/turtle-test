@@ -7,6 +7,9 @@ use TurtleTest\Services\Factory\Ranking;
 
 class RankingTest extends TestCase {
 
+	/**
+	 * @var \TurtleTest\Services\Factory\Ranking
+	 */
 	protected $factory;
 
 	public function __construct($name = null, array $data = [], $dataName = '') {

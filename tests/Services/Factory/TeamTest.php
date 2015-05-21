@@ -7,6 +7,9 @@ use TurtleTest\Services\Factory\Team;
 
 class TeamTest extends TestCase {
 
+	/**
+	 * @var \TurtleTest\Services\Factory\Team
+	 */
 	protected $factory;
 
 	public function __construct($name = null, array $data = [], $dataName = '') {
