@@ -29,7 +29,7 @@ abstract class Factory implements FactoryInterface
 	public function create(array $aData) {
 		$model = $this->app->make($this->model);
 
-		foreach($aData as $key => $value) {
+		foreach ($aData as $key => $value) {
 			$model->$key = $value;
 		}
 
@@ -43,7 +43,7 @@ abstract class Factory implements FactoryInterface
 	public function createMany(array $aData) {
 		$models = [];
 
-		foreach($aData as $model) {
+		foreach ($aData as $model) {
 			$models[] = $this->create($model);
 		}
 
