@@ -22,6 +22,10 @@ abstract class Factory implements FactoryInterface
 		$this->app = $aApp;
 	}
 
+	/**
+	 * @param array $aData
+	 * @return \TurtleTest\Model
+	 */
 	public function create(array $aData) {
 		$model = $this->app->make($this->model);
 
@@ -32,6 +36,10 @@ abstract class Factory implements FactoryInterface
 		return $model;
 	}
 
+	/**
+	 * @param array $aData
+	 * @return array
+	 */
 	public function createMany(array $aData) {
 		$models = [];
 

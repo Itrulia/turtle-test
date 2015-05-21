@@ -1,12 +1,7 @@
 <?php
 
-Route::get('/', function() {
-
-	/**
-	 * @var \TurtleTest\Services\Gateway\Cups $cupGateway
-	 */
-	$cupGateway = App::make('\TurtleTest\Services\Gateway\Cups');
-	$cups = $cupGateway->getCups();
+Route::get('/', function(\TurtleTest\Services\Gateway\CupsInterface $aCupGateway) {
+	$cups = $aCupGateway->getCups();
 
 	$teamSizes = new \Illuminate\Support\Collection();
 

@@ -1,6 +1,6 @@
 <?php namespace TurtleTest;
 
-use TurtleTest\Services\Gateway\Winner;
+use TurtleTest\Services\Gateway\WinnerInterface;
 
 /**
  * @property int $id
@@ -9,14 +9,14 @@ use TurtleTest\Services\Gateway\Winner;
  */
 class Cup extends Model {
 	/**
-	 * @var \TurtleTest\Services\Gateway\Winner
+	 * @var \TurtleTest\Services\Gateway\WinnerInterface
 	 */
 	protected $winnerGateway;
 
 	/**
-	 * @param \TurtleTest\Services\Gateway\Winner $aWinnerGateway
+	 * @param \TurtleTest\Services\Gateway\WinnerInterface $aWinnerGateway
 	 */
-	public function __construct(Winner $aWinnerGateway)
+	public function __construct(WinnerInterface $aWinnerGateway)
 	{
 		$this->winnerGateway = $aWinnerGateway;
 	}

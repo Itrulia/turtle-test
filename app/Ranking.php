@@ -1,6 +1,6 @@
 <?php namespace TurtleTest;
 
-use TurtleTest\Services\Factory\Team as TeamFactory;
+use TurtleTest\Services\Factory\TeamInterface as TeamFactoryInterface;
 
 /**
  * @property int $position
@@ -9,14 +9,14 @@ use TurtleTest\Services\Factory\Team as TeamFactory;
 class Ranking extends Model {
 
 	/**
-	 * @var \TurtleTest\Services\Factory\Team
+	 * @var \TurtleTest\Services\Factory\TeamInterface
 	 */
 	protected $factory;
 
 	/**
-	 * @param \TurtleTest\Services\Factory\Team $aFactory
+	 * @param \TurtleTest\Services\Factory\TeamInterface $aFactory
 	 */
-	public function __construct(TeamFactory $aFactory)
+	public function __construct(TeamFactoryInterface $aFactory)
 	{
 		$this->factory = $aFactory;
 	}

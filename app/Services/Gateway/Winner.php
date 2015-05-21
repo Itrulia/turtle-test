@@ -2,27 +2,27 @@
 
 use GuzzleHttp\Client;
 use TurtleTest\Ranking;
-use TurtleTest\Services\Factory\Team as TeamFactory;
+use TurtleTest\Services\Factory\TeamInterface as TeamFactoryInterface;
 
 class Winner extends Gateway implements WinnerInterface
 {
 
 	/**
-	 * @var \TurtleTest\Services\Factory\Winner
+	 * @var \TurtleTest\Services\Factory\WinnerInterface
 	 */
 	protected $factory;
 
 	/**
-	 * @var \TurtleTest\Services\Gateway\Rankings
+	 * @var \TurtleTest\Services\Gateway\RankingsInterface
 	 */
 	protected $rankings;
 
 	/**
 	 * @param \GuzzleHttp\Client $aClient
-	 * @param \TurtleTest\Services\Factory\Team $aFactory
-	 * @param \TurtleTest\Services\Gateway\Rankings $aRankings
+	 * @param \TurtleTest\Services\Factory\TeamInterface $aFactory
+	 * @param \TurtleTest\Services\Gateway\RankingsInterface $aRankings
 	 */
-	public function __construct(Client $aClient, TeamFactory $aFactory, Rankings $aRankings)
+	public function __construct(Client $aClient, TeamFactoryInterface $aFactory, RankingsInterface $aRankings)
 	{
 		parent::__construct($aClient);
 		$this->factory = $aFactory;

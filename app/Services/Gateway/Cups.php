@@ -1,21 +1,21 @@
 <?php namespace TurtleTest\Services\Gateway;
 
 use GuzzleHttp\Client;
-use TurtleTest\Services\Factory\Cup as CupFactory;
+use TurtleTest\Services\Factory\CupInterface as CupFactoryInterface;
 
 class Cups extends Gateway implements CupsInterface
 {
 
 	/**
-	 * @var \TurtleTest\Services\Factory\Cup
+	 * @var \TurtleTest\Services\Factory\CupInterface
 	 */
 	protected $factory;
 
 	/**
 	 * @param \GuzzleHttp\Client $aClient
-	 * @param \TurtleTest\Services\Factory\Cup $aFactory
+	 * @param \TurtleTest\Services\Factory\CupInterface $aFactory
 	 */
-	public function __construct(Client $aClient, CupFactory $aFactory)
+	public function __construct(Client $aClient, CupFactoryInterface $aFactory)
 	{
 		parent::__construct($aClient);
 		$this->factory = $aFactory;
