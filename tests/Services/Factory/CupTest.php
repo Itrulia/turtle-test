@@ -32,3 +32,4 @@ class CupTest extends TestCase {
 		$this->assertTrue(($result[0] instanceof \TurtleTest\Cup) && ($result[1] instanceof \TurtleTest\Cup));
 	}
 }
+
