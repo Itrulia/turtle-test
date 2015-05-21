@@ -151,6 +151,7 @@ return [
 		'TurtleTest\Providers\RouteServiceProvider',
 		'TurtleTest\Providers\FactoryServiceProvider',
 		'TurtleTest\Providers\GatewayServiceProvider',
+		'TurtleTest\Providers\FetchServiceProvider',
 	],
 
 	/*
