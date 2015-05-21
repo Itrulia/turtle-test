@@ -5,8 +5,6 @@ Route::get('/', function(\TurtleTest\Services\Gateway\CupsInterface $aCupGateway
 
 	$teamSizes = new \Illuminate\Support\Collection();
 
-	$winners = [];
-
 	foreach($cups as $cup) {
 		/**
 		 * @var \TurtleTest\Cup $cup
@@ -26,8 +24,6 @@ Route::get('/', function(\TurtleTest\Services\Gateway\CupsInterface $aCupGateway
 		if (is_null($cup->winner)) {
 			continue;
 		}
-
-		$winners[] = $cup->winner->id;
 
 		/**
 		 * @var \TurtleTest\Winner $winner
