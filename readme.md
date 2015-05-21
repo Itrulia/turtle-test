@@ -42,6 +42,12 @@ The gateways fetch data from the servers and call the factories.
 
 The factories creates a model and populate the the properties.
 
+## What the `Fetcher` does
+
+The lonely `FetchBrackets` class creates the different, brackets, populate them with the cups injected and removes empty cups.
+
+If you want to add features to the application, you most likely will do it here. 
+
 ## What the `Models` do
 
 Well the models are holding data. But they have some magic behind them.
@@ -70,3 +76,7 @@ protected function getIdAttribute() {
 ````
 
 Those get called behind the curtains when you call the described methods above.
+
+## Tests
+
+I run the tests on every `git push` with Travis. You can see the results [here](https://travis-ci.org/Itrulia/turtle-test) if you want to run them yourself, just `cd` in to the repository and call `phpunit`.
