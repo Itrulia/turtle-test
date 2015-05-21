@@ -14,7 +14,7 @@ class RankingsTest extends TestCase {
 
 	public function testGetRankings()
 	{
-		$response = Mockery::mock('GuzzleHttp\Client', function(MockInterface $mock) {
+		$response = Mockery::mock('GuzzleHttp\Message\ResponseInterface', function(MockInterface $mock) {
 			$mock->shouldReceive('json')->times(1)->withNoArgs()->andReturn(['ranking' => ['JSON']]);
 		});
 

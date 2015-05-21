@@ -13,7 +13,7 @@ class CupsTest extends TestCase {
 
 	public function testGetCups()
 	{
-		$response = Mockery::mock('GuzzleHttp\Client', function(MockInterface $mock) {
+		$response = Mockery::mock('GuzzleHttp\Message\ResponseInterface', function(MockInterface $mock) {
 			$mock->shouldReceive('json')->times(1)->withNoArgs()->andReturn(['JSON']);
 		});
 
