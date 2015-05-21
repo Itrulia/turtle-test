@@ -137,7 +137,7 @@ abstract class Model implements Arrayable, Jsonable
 	{
 		$array = [];
 
-		foreach($this->data as $key => $data) {
+		foreach ($this->data as $key => $data) {
 			if ($data instanceof Arrayable) {
 				$data = $data->toArray();
 			}
