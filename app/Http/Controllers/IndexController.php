@@ -17,7 +17,7 @@ class IndexController extends Controller
 	 */
 	protected function addBracket(Collection $aBrackets, Cup $aCup)
 	{
-		$bracket = $aBrackets->filter(function (\TurtleTest\Bracket $item) use ($aCup) {
+		$bracket = $aBrackets->filter(function(\TurtleTest\Bracket $item) use ($aCup) {
 			return $item->teamSize == $aCup->teamSize;
 		})->first();
 
@@ -38,7 +38,7 @@ class IndexController extends Controller
 	 */
 	protected function addWinner(Bracket $aBracket, Team $aWinner)
 	{
-		$winner = $aBracket->winners->filter(function (\TurtleTest\Winner $item) use ($aWinner) {
+		$winner = $aBracket->winners->filter(function(\TurtleTest\Winner $item) use ($aWinner) {
 			return $item->id === $aWinner->id;
 		})->first();
 
@@ -78,12 +78,12 @@ class IndexController extends Controller
 		}
 
 		// Sort out brackets without a winner
-		$brackets = $brackets->filter(function (Bracket $item) {
+		$brackets = $brackets->filter(function(Bracket $item) {
 			return !$item->winners->isEmpty();
 		});
 
 		// Sort brackets teamsize by ASC
-		$brackets = $brackets->sortBy(function (Bracket $item) {
+		$brackets = $brackets->sortBy(function(Bracket $item) {
 			return $item->teamSize;
 		});
 
