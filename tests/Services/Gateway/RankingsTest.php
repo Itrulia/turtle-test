@@ -5,24 +5,20 @@ use Mockery;
 use Mockery\MockInterface;
 use TurtleTest\Services\Gateway\Rankings;
 
-class RankingsTest extends TestCase {
-
-	public function __construct($name = null, array $data = [], $dataName = '') {
-		parent::__construct($name, $data, $dataName);
-	}
-
+class RankingsTest extends TestCase
+{
 
 	public function testGetRankings()
 	{
-		$response = Mockery::mock('GuzzleHttp\Message\ResponseInterface', function(MockInterface $mock) {
+		$response = Mockery::mock('GuzzleHttp\Message\ResponseInterface', function (MockInterface $mock) {
 			$mock->shouldReceive('json')->times(1)->withNoArgs()->andReturn(['ranking' => ['JSON']]);
 		});
 
-		$client = Mockery::mock('GuzzleHttp\Client', function(MockInterface $mock) use($response) {
+		$client = Mockery::mock('GuzzleHttp\Client', function (MockInterface $mock) use ($response) {
 			$mock->shouldReceive('get')->times(1)->with('http://play.eslgaming.com/api/leagues/1234/ranking')->andReturn($response);
 		});
 
-		$factory = Mockery::mock('TurtleTest\Services\Factory\Ranking', function(MockInterface $mock) {
+		$factory = Mockery::mock('TurtleTest\Services\Factory\Ranking', function (MockInterface $mock) {
 			$mock->shouldReceive('createMany')->times(1)->with(['JSON'])->andReturn('RANKINGS');
 		});
 

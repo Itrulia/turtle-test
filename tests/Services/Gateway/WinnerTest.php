@@ -5,16 +5,12 @@ use Mockery;
 use Mockery\MockInterface;
 use TurtleTest\Services\Gateway\Winner;
 
-class WinnerTest extends TestCase {
-
-	public function __construct($name = null, array $data = [], $dataName = '') {
-		parent::__construct($name, $data, $dataName);
-	}
-
+class WinnerTest extends TestCase
+{
 
 	public function testGetWinner()
 	{
-		$client = Mockery::mock('GuzzleHttp\Client', function(MockInterface $mock) {
+		$client = Mockery::mock('GuzzleHttp\Client', function (MockInterface $mock) {
 			$mock->shouldNotReceive('get');
 		});
 
@@ -28,14 +24,14 @@ class WinnerTest extends TestCase {
 		$ranking2->team = new \StdClass();
 		$ranking2->team->id = 3;
 
-		$rankings = Mockery::mock('TurtleTest\Services\Gateway\Rankings', function(MockInterface $mock) use ($ranking1, $ranking2) {
+		$rankings = Mockery::mock('TurtleTest\Services\Gateway\Rankings', function (MockInterface $mock) use ($ranking1, $ranking2) {
 			$mock->shouldReceive('getRankings')->times(1)->with(1234)->andReturn([
 				$ranking1,
 				$ranking2
 			]);
 		});
 
-		$factory = Mockery::mock('TurtleTest\Services\Factory\Team', function(MockInterface $mock) use($ranking1) {
+		$factory = Mockery::mock('TurtleTest\Services\Factory\Team', function (MockInterface $mock) use ($ranking1) {
 			$mock->shouldNotReceive('createMany');
 			$mock->shouldReceive('create')->times(1)->with(['id' => 2])->andReturn($ranking1);
 		});
