@@ -36,7 +36,11 @@ Also, when you use Laravel you can easily switch which implementation the IoC co
 
 ## What the `Gateways` do
 
+The gateways fetch data from the servers and call the factories.
+
 ## What the `Factories` do
+
+The factories creates a model and populate the the properties.
 
 ## What the `Models` do
 
