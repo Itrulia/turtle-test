@@ -20,7 +20,7 @@ class FetchBrackets implements FetchBracketsInterface
 		})->first();
 
 		if (empty($bracket)) {
-			$bracket = new \TurtleTest\Bracket();
+			$bracket = new Bracket();
 			$bracket->teamSize = $aCup->teamSize;
 
 			$aBrackets->push($bracket);
