@@ -25,7 +25,7 @@ class Cup extends Model {
 	 * @return Team
 	 */
 	public function getWinnerAttribute() {
-		if (!isset($this->data['winner'])) {
+		if (!array_key_exists('winner', $this->data)) {
 			$this->data['winner'] = $this->winnerGateway->getWinner($this->id);
 		}
 
