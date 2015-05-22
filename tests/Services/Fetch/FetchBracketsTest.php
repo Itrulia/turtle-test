@@ -5,7 +5,6 @@ use Mockery;
 use Mockery\MockInterface;
 use TurtleTest\Bracket;
 use TurtleTest\Services\Fetch\FetchBrackets;
-use StdClass;
 use TurtleTest\Winner;
 
 class FetchBracketsTest extends TestCase
