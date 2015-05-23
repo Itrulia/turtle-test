@@ -44,9 +44,12 @@ class Winner extends Gateway implements WinnerInterface
 			 */
 
 			if ($ranking->position === 1) {
-				$winner = [
-					'id' => $ranking->team->id
-				];
+				// There are some without a team/user
+				if (!is_null($ranking->team)) {
+					$winner = [
+						'id' => $ranking->team->id
+					];
+				}
 
 				break;
 			}
